@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        .projects-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .project-card .project-info {
+            padding: 15px;
+        }
+
+        .project-card .project-info h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+        }
+
+        .project-card .project-info p {
+            color: #555;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+
+        .project-card .project-info a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project-card .project-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Dark mode */
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        .dark-mode header {
+            background-color: #444;
+        }
+
+        .dark-mode footer {
+            background-color: #444;
+        }
+
+        /* Scroll-to-top button */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Contact form styles */
+        .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-form button {
+            background-color: #007BFF;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Projects</h1>
+</header>
+
+<nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="#" id="toggle-theme">Toggle Dark Mode</a>
+</nav>
+
+<div class="projects-section">
+    <!-- Project 1 -->
+    <div class="project-card">
+        <img src="{{ url_for('static', filename='images/hospital.png') }}" alt="Project 1" onclick="openLightbox('image1.jpg')">
+        <div class="project-info">
+            <h3>Project 1</h3>
+            <h3>Hospital management system</h3>
+            <p>In these projects I fully , utilizing HTML, CSS, and JavaScript to make this project functionable ans interative .</p>
+            <a href="https://link-to-project1.com" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+        <img src="{{ url_for('static', filename='images/virtual.png') }}" alt="Project 2" onclick="openLightbox('image2.jpg')">
+        <div class="project-info">
+            <h3>Project 2</h3>
+            <h3>Virtual-Assistant</h3>
+            <p>In this projects I use frontend for its interactive looks and python for its backend and its has many function in it .</p>
+            <a href="https://link-to-project2.com" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+        <img src="{{ url_for('static', filename='images/car.png') }}" alt="Project 3" onclick="openLightbox('image3.jpg')">
+        <div class="project-info">
+            <h3>Project 3</h3>
+            <h3>Car management system </h3>
+            <p>In this projects its has all features  that  is generally car management system have  and its all funtionable   also .</p>
+            <a href="https://link-to-project3.com" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card">
+        <img src="{{ url_for('static', filename='images/bank.png') }}" alt="Project 4" onclick="openLightbox('image4.jpg')">
+        <div class="project-info">
+            <h3>Project 4</h3>
+            <h3>Banking-management-system</h3>
+            <p>In this  it contain all features a normal banking application has and its all functionable .  </p>
+            <a href="https://link-to-project4.com" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card">
+        <img src="{{ url_for('static', filename='images/gess.png') }}" alt="Project 5" onclick="openLightbox('image5.jpg')">
+        <div class="project-info">
+            <h3>Project 5</h3>
+            <h3>Image-gussing-system</h3>
+            <p>This project take an image from users and tell them what this image actually is in percentage.</p>
+            <a href="https://link-to-project5.com" target="_blank">View Project</a>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<div class="contact-form">
+    <h2>Contact Me</h2>
+    <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+    // Dark Mode Toggle
+    const toggleButton = document.getElementById('toggle-theme');
+    toggleButton.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+    });
+
+    // Lightbox functionality
+    function openLightbox(imageName) {
+        document.getElementById('lightbox').style.display = 'flex';
+        document.getElementById('lightbox-img').src = "{{ url_for('static', filename='images/') }}" + imageName;
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // Scroll to Top functionality
+    window.onscroll = function () {
+        let scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Contact form validation
+    function validateForm() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+        if (!name || !email || !message) {
+            alert("Please fill in all fields.");
+            return false;
+        }
+        alert("Form submitted successfully!");
+        return true;
+    }
+</script>
+
+<footer>
+    <p>Designed by [Your Name]</p>
+    <p>&copy; 2025 All Rights Reserved</p>
+</footer>
+
+</body>
+
+</html>

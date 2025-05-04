@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .about-text p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .about-images {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .about-images img {
+            width: 45%;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .about-images img:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel {
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .timeline {
+            margin: 2rem 0;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item .date {
+            width: 100px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .timeline-item .event {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Dark mode */
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        .dark-mode header {
+            background-color: #444;
+        }
+
+        .dark-mode footer {
+            background-color: #444;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Feedback Form */
+        .feedback-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .feedback-form button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .feedback-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Image Lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>About Me</h1>
+</header>
+
+<nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="#" id="toggle-theme">Toggle Dark Mode</a>
+</nav>
+
+<div class="about-section">
+    <div class="about-text">
+        <h2>Hi, I'm [Your Name]</h2>
+        <p>Welcome to my portfolio. I'm a passionate developer with a deep interest in web development and software engineering. I specialize in building web applications and creating intuitive user experiences. My journey into tech began [insert brief story], and since then, I've been continuously learning and evolving.</p>
+        <p>I'm proficient in a variety of programming languages and tools, including HTML, CSS, JavaScript, Python, and many more. I am always looking for new challenges to improve my skills and grow as a developer.</p>
+    </div>
+
+    <div class="about-images">
+        <!-- Image Gallery with Lightbox -->
+        <img src="{{ url_for('static', filename='images/gallery.png') }}" alt="Gallery Image 1" onclick="openLightbox(this)">
+        <img src="{{ url_for('static', filename='images/image2.png') }}" alt="Gallery Image 2" onclick="openLightbox(this)">
+        <img src="{{ url_for('static', filename='images/image3.png') }}" alt="Gallery Image 3" onclick="openLightbox(this)">
+        <img src="{{ url_for('static', filename='images/image4.png') }}" alt="Gallery Image 4" onclick="openLightbox(this)">
+    </div>
+</div>
+
+<!-- Lightbox for Full Image View -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImage" src="" alt="Full Image">
+</div>
+
+<div class="timeline">
+    <h3>My Journey</h3>
+    <div class="timeline-item">
+        <div class="date">2020</div>
+        <div class="event">Started learning web development</div>
+    </div>
+    <div class="timeline-item">
+        <div class="date">2021</div>
+        <div class="event">Built my first web application</div>
+    </div>
+    <div class="timeline-item">
+        <div class="date">2022</div>
+        <div class="event">Worked on my first freelance project</div>
+    </div>
+    <div class="timeline-item">
+        <div class="date">2023</div>
+        <div class="event">Launched my portfolio and continued learning</div>
+    </div>
+</div>
+
+<div class="feedback-form">
+    <h3>Give Me Your Feedback!</h3>
+    <form id="feedbackForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <textarea id="message" rows="4" placeholder="Your Feedback" required></textarea>
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>
+
+<footer>
+    <p>Designed by [Your Name]</p>
+    <p>&copy; 2025 All Rights Reserved</p>
+</footer>
+
+<script>
+    // Dark Mode Toggle
+    const toggleButton = document.getElementById('toggle-theme');
+    toggleButton.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+    });
+
+    // Image Lightbox Functionality
+    function openLightbox(img) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightbox.style.display = "flex";
+        lightboxImage.src = img.src;
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = "none";
+    }
+
+    // Feedback Form Submission
+    document.getElementById('feedbackForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+        alert(`Thank you, ${name}! Your feedback: "${message}" has been submitted.`);
+        document.getElementById('feedbackForm').reset();
+    });
+
+    // Welcome Popup
+    window.onload = function () {
+        alert("Welcome to my About Page! I'm glad you're here!");
+    };
+</script>
+
+</body>
+
+</html>
